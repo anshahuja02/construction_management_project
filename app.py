@@ -79,6 +79,45 @@ def create_task(project_id):
 
     return render_template('create_task.html', project_id=project_id)
 
+# Route for editing a task
+
+
+@app.route('/project/<int:project_id>/edit_task/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(project_id, task_id):
+    sql = "SELECT * FROM tasks WHERE id=%s AND project_id=%s"
+    cursor.execute(sql, (task_id, project_id))
+    task = cursor.fetchone()
+
+    if request.method == 'POST':
+        name = request.form['name']
+        description = request.form['description']
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+        status = request.form['status']
+
+        sql = "UPDATE tasks SET name=%s, description=%s, start_date=%s, end_date=%s, status=%s WHERE id=%s AND project_id=%s"
+        cursor.execute(sql, (name, description, start_date,
+                       end_date, status, task_id, project_id))
+        db.commit()
+        return redirect(url_for('project', project_id=project_id))
+
+    return render_template('edit_task.html', project_id=project_id, task_id=task_id, task=task)
+
+
+@app.route('/project/<int:project_id>/delete_task/<int:task_id>', methods=['GET', 'POST'])
+def delete_task(project_id, task_id):
+    sql = "SELECT * FROM tasks WHERE id=%s AND project_id=%s"
+    cursor.execute(sql, (task_id, project_id))
+    task = cursor.fetchone()
+
+    if request.method == 'POST':
+        sql = "DELETE FROM tasks WHERE id=%s AND project_id=%s"
+        cursor.execute(sql, (task_id, project_id))
+        db.commit()
+        return redirect(url_for('project', project_id=project_id))
+
+    return render_template('delete_task.html', project_id=project_id, task_id=task_id, task=task)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
