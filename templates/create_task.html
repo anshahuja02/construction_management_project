@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Create New Task</h1>
+    <form action="{{ url_for('create_task', project_id=project_id) }}" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+        <label>Description:</label>
+        <textarea name="description" rows="4" cols="50" required></textarea><br>
+        <label>Start Date:</label>
+        <input type="date" name="start_date" required><br>
+        <label>End Date:</label>
+        <input type="date" name="end_date" required><br>
+        <label>Status:</label>
+        <select name="status">
+            <option value="Planned">Planned</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select><br>
+        <input type="submit" value="Create">
+    </form>
+    <a href="{{ url_for('project', project_id=project_id) }}">Back to Project</a>
+</body>
+</html>
