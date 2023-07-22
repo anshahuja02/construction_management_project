@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project[1] }}</title>
+</head>
+<body>
+    <h1>{{ project[1] }}</h1>
+    <p>Location: {{ project[2] }}</p>
+    <p>Start Date: {{ project[3] }}</p>
+    <p>End Date: {{ project[4] }}</p>
+    <p>Budget: {{ project[5] }}</p>
+    <p>Status: {{ project[6] }}</p>
+    
+    <h2>Tasks:</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>{{ task[2] }} - {{ task[5] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create_task', project_id=project[0]) }}">Create New Task</a>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Projects</a>
+</body>
+</html>
+``

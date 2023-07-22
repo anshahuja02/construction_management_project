@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Construction Project Management</title>
+</head>
+<body>
+    <h1>Construction Projects</h1>
+    <ul>
+        {% for project in projects %}
+        <li><a href="{{ url_for('project', project_id=project[0]) }}">{{ project[1] }}</a> - {{ project[3] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create_project') }}">Create New Project</a>
+</body>
+</html>

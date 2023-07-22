@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Project</title>
+</head>
+<body>
+    <h1>Create New Project</h1>
+    <form action="{{ url_for('create_project') }}" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+        <label>Location:</label>
+        <input type="text" name="location" required><br>
+        <label>Start Date:</label>
+        <input type="date" name="start_date" required><br>
+        <label>End Date:</label>
+        <input type="date" name="end_date" required><br>
+        <label>Budget:</label>
+        <input type="number" name="budget" step="0.01" required><br>
+        <label>Status:</label>
+        <select name="status">
+            <option value="Planned">Planned</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select><br>
+        <input type="submit" value="Create">
+    </form>
+    <a href="{{ url_for('index') }}">Back to Projects</a>
+</body>
+</html>
