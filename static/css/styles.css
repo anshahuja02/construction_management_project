@@ -1,3 +1,63 @@
 .TopHeading{
     text-align: center;
+    text-decoration: underline;
+    font-size: 3rem;
 }
+
+.homePage{
+ position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: rgb(53, 4, 60);
+  width: 75%;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: white;
+
+
+}
+.delete-icon {
+    color: red; /* Set the color of the icon */
+    margin-left: 5px; /* Adjust the left margin for spacing */
+    text-decoration: none; /* Remove underline from the icon link */
+    padding-right: 10%;
+}
+
+.container ol{
+    width: 60%;
+    size: 10px;
+    margin: auto;
+   
+    border-radius: 20px;
+
+
+}
+
+.container li{
+    width: 100%;
+   padding: 10px 5px; 
+   background-color: #061565bf;
+   border-radius: 30px;
+   margin: 10px 0;
+   text-align: center;
+    font-size: 1.5rem;
+    
+
+}
+.container li:hover{
+background-color: #0c27c4bf;
+}
+.Home-button{
+margin-top: 10%;
+    text-align: center;
+
+height: 50px;
+
+}
+a:link    { color: white }    /* unvisited links */
+a:visited { color: white ;
+text-decoration: none;}   /* visited links   */
+a:hover   { color: rgb(255, 174, 0) ; font-weight: bold;} /* user hovers     */
+a:active  { color: lime }   /* active links    */

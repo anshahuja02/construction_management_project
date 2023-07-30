@@ -118,6 +118,29 @@ def delete_task(project_id, task_id):
 
     return render_template('delete_task.html', project_id=project_id, task_id=task_id, task=task)
 
+# ... Other imports and code ...
+
+# Route for deleting a project
+
+
+@app.route('/project/<int:project_id>/delete_project', methods=['GET', 'POST'])
+def delete_project(project_id):
+    sql = "SELECT * FROM projects WHERE id=%s"
+    cursor.execute(sql, (project_id,))
+    project = cursor.fetchone()
+
+    if request.method == 'POST':
+        # Delete all tasks associated with the project
+        sql = "DELETE FROM tasks WHERE project_id=%s"
+        cursor.execute(sql, (project_id,))
+        # Delete the project
+        sql = "DELETE FROM projects WHERE id=%s"
+        cursor.execute(sql, (project_id,))
+        db.commit()
+        return redirect(url_for('index'))
+
+    return render_template('delete_project.html', project=project)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

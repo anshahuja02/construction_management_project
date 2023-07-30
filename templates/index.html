@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Construction Project Management</title>
 </head>
 <body>
+    <div class="container">
+    <div class="homePage">
     <h1 class="TopHeading">Construction Projects</h1>
-    <ul>
+    <ol>
         {% for project in projects %}
-        <li><a href="{{ url_for('project', project_id=project[0]) }}">{{ project[1] }}</a> - {{ project[3] }}</li>
+        <li style="display: flex; justify-content: space-between; text-transform: uppercase;">
+            <a href="{{ url_for('project', project_id=project[0]) }}" style="text-decoration:none; flex: 1;">
+                <span style="text-align: center;">{{ project[0]}}.        {{ project[1] }}</span>
+            </a>
+            <a href="{{ url_for('delete_project', project_id=project[0]) }}" class="delete-icon">
+                <i class="fas fa-trash"></i>
+            </a>
+        </li>
+        
+        
+        <!-- //for date - {{ project[3] }} -->
+
         {% endfor %}
-    </ul>
-    <a href="{{ url_for('create_project') }}">Create New Project</a>
+    </ol>
+    <div class="Home-button">
+    <a href="{{ url_for('create_project') }}" style="font-size: 2rem;text-decoration: none;">Create New Project</a>
+</div>
+</div>
+</div>
 </body>
 </html>
